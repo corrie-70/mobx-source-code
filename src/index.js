@@ -1,4 +1,4 @@
-import {observable, autorun} from './.build.es6/mobx'
+import { observable, autorun } from './.build.es6/mobx'
 const addBtn = document.getElementById('add')
 const minusBtn = document.getElementById('minus')
 const incomeLabel = document.getElementById('incomeLabel')
@@ -7,13 +7,13 @@ const bankUser = observable({
     income: 3,
     debit: 2
 });
-
+console.log('===============', bankUser);
 const incomeDisposer = autorun((reaction) => {
     if (bankUser.income < 0) {
         bankUser.income = 0
         throw new Error('throw new error')
-    } 
-    incomeLabel.innerText = `Ivan Fan income is ${bankUser.income}`   
+    }
+    incomeLabel.innerText = `Ivan Fan income is ${bankUser.income}`
 }, {
     name: 'income',
     // delay: 2*1000,
@@ -22,11 +22,11 @@ const incomeDisposer = autorun((reaction) => {
     }
 })
 
-addBtn.addEventListener('click', ()=> {
-    bankUser.income ++
+addBtn.addEventListener('click', () => {
+    bankUser.income++
 })
 minusBtn.addEventListener('click', () => {
-    bankUser.income --
+    bankUser.income--
 })
 
 

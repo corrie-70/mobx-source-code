@@ -32,6 +32,7 @@ const objectProxyTraps = {
         if (typeof name !== "string")
             return false;
         set(target, name, value);
+        console.log('objectProxyTraps', target, name, value);
         return true;
     },
     deleteProperty(target, name) {

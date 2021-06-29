@@ -5,8 +5,9 @@ export function extendObservable(target, properties, decorators, options) {
         invariant(typeof target === "object", "'extendObservable' expects an object as first argument");
         invariant(!isObservableMap(target), "'extendObservable' should not be used on maps, use map.merge instead");
     }
-    options = asCreateObservableOptions(options);
+    options = asCreateObservableOptions(options); // 检测配置信息有没有被非法修改
     const defaultDecorator = getDefaultDecoratorFromObjectOptions(options);
+    // 给空对象追加$mobx属性，其值为ObservableObjectAdministration类型对象
     asObservableObject(target, options.name, defaultDecorator.enhancer); // make sure object is observable, even without initial props
     if (properties)
         extendObservableObjectWithProperties(target, properties, decorators, defaultDecorator);

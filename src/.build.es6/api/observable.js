@@ -84,7 +84,7 @@ const observableFactories = {
     object(props, decorators, options) {
         if (typeof arguments[1] === "string")
             incorrectlyUsedAsDecorator("object");
-        const o = asCreateObservableOptions(options);
+        const o = asCreateObservableOptions(options); // o对象就是配置信息对象
         if (o.proxy === false) {
             return extendObservable({}, props, decorators, o);
         }
